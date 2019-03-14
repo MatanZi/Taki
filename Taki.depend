@@ -1,0 +1,27 @@
+# depslib dependency file v1.0
+1552560965 source:/home/sam/Desktop/C++ Advanced/Taki/main.cpp
+	"includes/Game.h"
+
+1552591851 /home/sam/Desktop/C++ Advanced/Taki/includes/Game.h
+	"Player.h"
+	"Card.h"
+
+1552586767 /home/sam/Desktop/C++ Advanced/Taki/includes/Player.h
+	"Card.h"
+
+1552577166 /home/sam/Desktop/C++ Advanced/Taki/includes/Card.h
+	<string>
+	<iostream>
+	<random>
+	<time.h>
+
+1552561234 source:/home/sam/Desktop/C++ Advanced/Taki/src/Card.cpp
+	"../includes/Card.h"
+	<windows.h>
+
+1552593002 source:/home/sam/Desktop/C++ Advanced/Taki/src/Game.cpp
+	"../includes/Game.h"
+
+1552592604 source:/home/sam/Desktop/C++ Advanced/Taki/src/Player.cpp
+	"../includes/Player.h"
+

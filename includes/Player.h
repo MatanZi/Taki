@@ -4,13 +4,17 @@
 class Player {
 private:
 	std::string name;
-	int num_of_cards;
-	//vector of cards
+	int nbCards;
+	vector<Card> cards;
 	//private members
 
 public:
+    Player(string name, int nbCards, vector<Card> cards);
 	//public members
 	bool play(Card&);
+	string getName();
+	vector<Card> getCards();
+	int getNbCards();
 };
 #endif
 
