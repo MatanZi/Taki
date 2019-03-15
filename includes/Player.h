@@ -1,16 +1,18 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include "Card.h"
-class Player {
+class Player
+{
 private:
+    //private members
 	std::string name;
 	int nbCards;
 	vector<Card> cards;
-	//private members
+	bool makeChoice(Card& current);
 
 public:
+    //public members
     Player(string name, int nbCards, vector<Card> cards);
-	//public members
 	bool play(Card&);
 	string getName();
 	vector<Card> getCards();

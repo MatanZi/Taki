@@ -5,54 +5,13 @@ void Game::start()
     initialization();
     while(true)
     {
-        makeRound();
-        break;
-    }
-}
-
-void Game::makeRound()
-{
-    cout << "current: " <<  this->getCurrent() << endl;
-    Player currentPlayer = getPlayers()[this->getTurn()];
-    cout << currentPlayer.getName() << ", your turn -" << endl;
-    cout << "Your cards: ";
-    for(int i = 0; i < currentPlayer.getNbCards(); i++)
-    {
-        cout << "(" << i + 1 << ")" << currentPlayer.getCards()[i] << " ";
-    }
-    cout << endl;
-    int choice;
-    cin >> choice;
-    Legal legal = this->isChoiceLegal(choice);
-    switch(legal)
-    {
-    case Legal::notLegal:
-        std::cout << "notlegal";
-        break;
-    case Legal::legal:
-        std::cout << "legal";
-        break;
-    case Legal::cardPb:
-        std::cout << "cardpb";
-        break;
-    }
-}
-
-Legal Game::isChoiceLegal(int choice)
-{
-    Player currentPlayer = getPlayers()[this->getTurn()];
-    if (choice < 1 || choice > currentPlayer.getNbCards())
-    {
-        return Legal::notLegal;
-    }
-    Card cardChoosed =  getPlayers()[this->getTurn()].getCards()[choice - 1];
-    if (cardChoosed.is_legal(this->getCurrent()))
-    {
-        return Legal::legal;
-    }
-    else
-    {
-        return Legal::cardPb;
+        Player currentPlayer = this->getPlayers()[this->getTurn()];
+        currentPlayer.play(this->getCurrent());
+        if (currentPlayer.getNbCards() == 0) {
+            cout << currentPlayer.getName() << " wins!" << endl;
+            return;
+        }
+        nextTurn(this->getCurrent());
     }
 }
 
@@ -87,17 +46,78 @@ void Game::initialization()
     }
 }
 
+void Game::nextTurn(Card newCurrent)
+{
+    switch(newCurrent.get_sign())
+    {
+    case sign::PLUS:
+        return;
+    case sign::CD:
+        switch(this->getSense())
+        {
+        case Sense::right:
+            this->setSence(Sense::left);
+            break;
+        case Sense::left:
+            this->setSence(Sense::right);
+            break;
+        }
+        break;
+    case sign::STOP:
+        this->incrementTurn();
+        break;
+    }
+    this->incrementTurn();
+}
+
+void Game::incrementTurn()
+{
+    switch(this->getSense())
+    {
+    case Sense::right:
+        this->getTurn()++;
+        break;
+    case Sense::left:
+        this->getTurn()--;
+        break;
+    }
+}
+
+int Game::operator ++(int nb)
+{
+    if (nb == this->getPlayers().size())
+    {
+        nb = 0;
+    }
+    else
+    {
+        nb++;
+    }
+}
+
+int Game::operator --(int nb)
+{
+    if (nb == 0)
+    {
+        nb = this->getPlayers().size() - 1;
+    }
+    else
+    {
+        nb--;
+    }
+}
+
 vector<Player> Game::getPlayers()
 {
     return this->players;
 }
 
-Card Game::getCurrent()
+Card& Game::getCurrent()
 {
     return this->current;
 }
 
-int Game::getTurn()
+int& Game::getTurn()
 {
     return this->turn;
 }
@@ -105,4 +125,9 @@ int Game::getTurn()
 Sense Game::getSense()
 {
     return this->sense;
+}
+
+void Game::setSence(Sense newSence)
+{
+    this->sense = newSence;
 }
