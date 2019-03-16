@@ -1,3 +1,5 @@
+/* Samuel Bismuth 342533064 */
+
 #ifndef PLAYER_H
 #define PLAYER_H
 #include "Card.h"
@@ -14,9 +16,9 @@ public:
     //public members
     Player(string name, int nbCards, vector<Card> cards);
 	bool play(Card&);
-	string getName();
-	vector<Card> getCards();
-	int getNbCards();
+	string& getName();
+	vector<Card>& getCards();
+	int& getNbCards();
 };
 #endif
 

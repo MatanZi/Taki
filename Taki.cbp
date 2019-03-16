@@ -36,6 +36,7 @@
 		<Unit filename="includes/Game.h" />
 		<Unit filename="includes/Player.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="makefile" />
 		<Unit filename="src/Card.cpp" />
 		<Unit filename="src/Game.cpp" />
 		<Unit filename="src/Player.cpp" />

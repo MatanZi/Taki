@@ -1,3 +1,5 @@
+/* Samuel Bismuth 342533064 */
+
 #include "../includes/Card.h"
 //#define RANDOM
 #ifdef WINDOWS

@@ -1,3 +1,5 @@
+/* Samuel Bismuth 342533064 */
+
 #include "../includes/Game.h"
 
 void Game::start()
@@ -5,13 +7,22 @@ void Game::start()
     initialization();
     while(true)
     {
-        Player currentPlayer = this->getPlayers()[this->getTurn()];
-        currentPlayer.play(this->getCurrent());
-        if (currentPlayer.getNbCards() == 0) {
-            cout << currentPlayer.getName() << " wins!" << endl;
+        Player* currentPlayer;
+        currentPlayer = this->getPlayers()[this->getTurn()];
+        bool flag = currentPlayer->play(this->getCurrent());
+        if (currentPlayer->getNbCards() == 0)
+        {
+            cout << currentPlayer->getName() << " wins!" << endl;
             return;
         }
-        nextTurn(this->getCurrent());
+        if (flag)
+        {
+            nextTurn(this->getCurrent());
+        }
+        else
+        {
+            this->getTurn()++;
+        }
     }
 }
 
@@ -41,8 +52,8 @@ void Game::initialization()
         {
             cards.push_back(Card::generate_card());
         }
-        Player player(name, nbCards, cards);
-        players.push_back(player);
+        // TODO: DESTRUCTOR.
+        players.push_back(new Player(name, nbCards, cards));
     }
 }
 
@@ -75,39 +86,29 @@ void Game::incrementTurn()
     switch(this->getSense())
     {
     case Sense::right:
-        this->getTurn()++;
+        if (this->getTurn()  == this->getPlayers().size() - 1)
+        {
+            this->getTurn()  = 0;
+        }
+        else
+        {
+            this->getTurn() ++;
+        }
         break;
     case Sense::left:
-        this->getTurn()--;
+        if (this->getTurn() == 0)
+        {
+            this->getTurn() = this->getPlayers().size() - 1;
+        }
+        else
+        {
+            this->getTurn()--;
+        }
         break;
     }
 }
 
-int Game::operator ++(int nb)
-{
-    if (nb == this->getPlayers().size())
-    {
-        nb = 0;
-    }
-    else
-    {
-        nb++;
-    }
-}
-
-int Game::operator --(int nb)
-{
-    if (nb == 0)
-    {
-        nb = this->getPlayers().size() - 1;
-    }
-    else
-    {
-        nb--;
-    }
-}
-
-vector<Player> Game::getPlayers()
+vector<Player*> Game::getPlayers()
 {
     return this->players;
 }

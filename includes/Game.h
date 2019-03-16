@@ -1,3 +1,5 @@
+/* Samuel Bismuth 342533064 */
+
 #ifndef GAME_H
 #define GAME_H
 #include "Player.h"
@@ -14,9 +16,7 @@ private:
     void initialization();
     void nextTurn(Card newCurrent);
     void incrementTurn();
-    int operator ++(int);
-    int operator --(int);
-    vector<Player> players;
+    vector<Player*> players;
     Card current = Card::generate_card();
     int turn = 0;
     Sense sense = Sense::right;
@@ -24,7 +24,7 @@ private:
 public:
     //public members and functions
     void start();
-    vector<Player> getPlayers();
+    vector<Player*> getPlayers();
     Card& getCurrent();
     int& getTurn();
     Sense getSense();

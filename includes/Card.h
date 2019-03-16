@@ -1,3 +1,5 @@
+/* Samuel Bismuth 342533064 */
+
 #ifndef CARD_H
 #define CARD_H
 #include<string>

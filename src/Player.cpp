@@ -1,3 +1,5 @@
+/* Samuel Bismuth 342533064 */
+
 #include "../includes/Player.h"
 
 Player::Player(string name, int nbCards, vector<Card> cards):name(name), nbCards(nbCards), cards(cards) {}
@@ -7,7 +9,6 @@ bool Player::play(Card& current)
     cout << "current: " <<  current << endl;
     cout << this->getName() << ", your turn -" << endl;
     cout << "Your cards: ";
-    cout << "test" << this->getNbCards() << endl;
     for(int i = 0; i < this->getNbCards(); i++)
     {
         cout << "(" << i + 1 << ")" << this->getCards()[i] << " ";
@@ -20,7 +21,7 @@ bool Player::makeChoice(Card& current)
 {
     int choice;
     cin >> choice;
-    if (choice < 1 || choice > this->getNbCards()))
+    if (choice < 1 || choice > this->getNbCards())
     {
         this->getCards().push_back(Card::generate_card());
         this->getNbCards()++;
@@ -30,7 +31,7 @@ bool Player::makeChoice(Card& current)
     if (cardChoosed.is_legal(current))
     {
         current = cardChoosed;
-        //this->getCards().erase(this->getCards().begin() + choice - 1);
+        this->getCards().erase(this->getCards().begin() + choice - 1);
         this->getNbCards()--;
         return true;
     }
@@ -41,17 +42,17 @@ bool Player::makeChoice(Card& current)
     }
 }
 
-string Player::getName()
+string& Player::getName()
 {
     return this->name;
 }
 
-int Player:: getNbCards()
+int& Player::getNbCards()
 {
     return this->nbCards;
 }
 
-vector<Card> Player::getCards()
+vector<Card>& Player::getCards()
 {
     return this->cards;
 }
