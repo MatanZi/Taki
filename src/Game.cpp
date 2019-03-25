@@ -2,17 +2,35 @@
 
 #include "../includes/Game.h"
 
+/**
+default constructor
+*/
+Game::Game()
+{
+    this->sense = Sense::right;
+    this->turn = 0;
+}
+
 void Game::start()
 {
-    initialization();
+    try
+    {
+        initialization();
+    }
+    catch (std::string error)
+    {
+        std::cout << "An exception occurred: " << error << '\n';
+        exit(0);
+    }
+    this->current = Card::generate_card();
     while(true)
     {
         Player* currentPlayer;
         currentPlayer = this->getPlayers()[this->getTurn()];
-        bool flag = currentPlayer->play(this->getCurrent());
+        bool flag = currentPlayer->play(this->current);
         if (currentPlayer->getNbCards() == 0)
         {
-            cout << currentPlayer->getName() << " wins!" << endl;
+            std::cout << currentPlayer->getName() << " wins!" << std::endl;
             return;
         }
         if (flag)
@@ -21,7 +39,7 @@ void Game::start()
         }
         else
         {
-            this->getTurn()++;
+            this->incrementTurn();
         }
     }
 }
@@ -36,18 +54,26 @@ void Game::start()
 void Game::initialization()
 {
     // TODO: Check if the input are authorized.
-    cout << "How many players?" << endl;
+    std::cout << "How many players?" << std::endl;
     int nbPlayers;
-    cin >>  nbPlayers;
-    cout << "How many cards?" << endl;
+    std::cin >>  nbPlayers;
+    if (nbPlayers < 2)
+    {
+        throw std::string("You need two players at least!");
+    }
+    std::cout << "How many cards?" << std::endl;
     int nbCards;
-    cin >>  nbCards;
+    std::cin >>  nbCards;
+    if (nbCards < 1)
+    {
+        throw std::string("You need one card at least!");
+    }
     for (int i = 0; i < nbPlayers; i++)
     {
-        cout << "Player number " << i + 1 << " name?" << endl;
-        string name;
-        cin >>  name;
-        vector<Card> cards;
+        std::cout << "player number " << i + 1 << " name?" << std::endl;
+        std::string name;
+        std::cin >>  name;
+        std::vector<Card> cards;
         for (int j = 0; j < nbCards; j++)
         {
             cards.push_back(Card::generate_card());
@@ -92,7 +118,7 @@ void Game::incrementTurn()
         }
         else
         {
-            this->getTurn() ++;
+            this->getTurn()++;
         }
         break;
     case Sense::left:
@@ -108,7 +134,7 @@ void Game::incrementTurn()
     }
 }
 
-vector<Player*> Game::getPlayers()
+std::vector<Player*> Game::getPlayers()
 {
     return this->players;
 }

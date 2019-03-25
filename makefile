@@ -1,3 +1,5 @@
+# /* Samuel Bismuth 342533064 */
+
 CXX = g++
 CXXFLAGS = -std=c++0x
 

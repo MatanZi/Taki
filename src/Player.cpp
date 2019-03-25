@@ -2,25 +2,21 @@
 
 #include "../includes/Player.h"
 
-Player::Player(string name, int nbCards, vector<Card> cards):name(name), nbCards(nbCards), cards(cards) {}
+Player::Player(std::string name, int nbCards, std::vector<Card> cards):name(name), nbCards(nbCards), cards(cards) {}
 
 bool Player::play(Card& current)
 {
-    cout << "current: " <<  current << endl;
-    cout << this->getName() << ", your turn -" << endl;
-    cout << "Your cards: ";
-    for(int i = 0; i < this->getNbCards(); i++)
-    {
-        cout << "(" << i + 1 << ")" << this->getCards()[i] << " ";
-    }
-    cout << endl;
+    std::cout << "current: " <<  current << std::endl;
+    std::cout << this->getName() << ", your turn -" << std::endl;
+    std::cout << "Your cards: ";
+    std::cout << *this << std::endl;
     return this->makeChoice(current);
 }
 
 bool Player::makeChoice(Card& current)
 {
     int choice;
-    cin >> choice;
+    std::cin >> choice;
     if (choice < 1 || choice > this->getNbCards())
     {
         this->getCards().push_back(Card::generate_card());
@@ -37,12 +33,25 @@ bool Player::makeChoice(Card& current)
     }
     else
     {
-        cout << "you can't put " << cardChoosed << " on " << current << endl;
+        std::cout << "You can't put " << cardChoosed << " on " << current << std::endl;
         return this->makeChoice(current);
     }
 }
 
-string& Player::getName()
+/**
+ * operator<<
+ * return ostream& that contains all the list of cards.
+ */
+std::ostream& operator<< (std::ostream &os, Player& p)
+{
+    for(int i = 0; i < p.getNbCards(); i++)
+    {
+        std::cout << "(" << i + 1 << ")" << p.getCards()[i] << " ";
+    }
+    return os;
+}
+
+std::string& Player::getName()
 {
     return this->name;
 }
@@ -52,7 +61,7 @@ int& Player::getNbCards()
     return this->nbCards;
 }
 
-vector<Card>& Player::getCards()
+std::vector<Card>& Player::getCards()
 {
     return this->cards;
 }

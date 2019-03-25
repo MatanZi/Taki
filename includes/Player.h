@@ -3,22 +3,25 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include "Card.h"
+#include<vector>
 class Player
 {
 private:
     //private members
-	std::string name;
-	int nbCards;
-	vector<Card> cards;
-	bool makeChoice(Card& current);
+    std::string name;
+    int nbCards;
+    std::vector<Card> cards;
+    bool makeChoice(Card& current);
 
 public:
     //public members
-    Player(string name, int nbCards, vector<Card> cards);
-	bool play(Card&);
-	string& getName();
-	vector<Card>& getCards();
-	int& getNbCards();
+    Player() : nbCards(1), name("") {}; /* default constructor */
+    Player(std::string name, int nbCards, std::vector<Card> cards);
+    bool play(Card&);
+    std::string& getName();
+    std::vector<Card>& getCards();
+    int& getNbCards();
+    friend std::ostream& operator << (std::ostream &os, Player&);
 };
 #endif
 

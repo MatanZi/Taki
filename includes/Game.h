@@ -16,15 +16,18 @@ private:
     void initialization();
     void nextTurn(Card newCurrent);
     void incrementTurn();
-    vector<Player*> players;
-    Card current = Card::generate_card();
-    int turn = 0;
-    Sense sense = Sense::right;
+    std::vector<Player*> players;
+    Card current;
+    int turn;
+    Sense sense;
+    Game(const Game&); /* Copy constructor-private because we don't need it */
+	Game operator=(const Game&); /* Operator-private because we don't need it */
 
 public:
     //public members and functions
+    Game(); //constructor
     void start();
-    vector<Player*> getPlayers();
+    std::vector<Player*> getPlayers();
     Card& getCurrent();
     int& getTurn();
     Sense getSense();

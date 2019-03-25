@@ -1,27 +1,27 @@
 # depslib dependency file v1.0
-1552560965 source:/home/sam/Desktop/C++ Advanced/Taki/main.cpp
+1553014125 source:/home/sam/Desktop/C++ Advanced/Taki/main.cpp
 	"includes/Game.h"
 
-1552763462 /home/sam/Desktop/C++ Advanced/Taki/includes/Game.h
+1553524937 /home/sam/Desktop/C++ Advanced/Taki/includes/Game.h
 	"Player.h"
 	"Card.h"
 
-1552762451 /home/sam/Desktop/C++ Advanced/Taki/includes/Player.h
+1553524924 /home/sam/Desktop/C++ Advanced/Taki/includes/Player.h
 	"Card.h"
+	<vector>
 
-1552577166 /home/sam/Desktop/C++ Advanced/Taki/includes/Card.h
+1553151142 /home/sam/Desktop/C++ Advanced/Taki/includes/Card.h
 	<string>
 	<iostream>
 	<random>
 	<time.h>
 
-1552764111 source:/home/sam/Desktop/C++ Advanced/Taki/src/Card.cpp
+1553524947 source:/home/sam/Desktop/C++ Advanced/Taki/src/Card.cpp
 	"../includes/Card.h"
-	<windows.h>
 
-1552763749 source:/home/sam/Desktop/C++ Advanced/Taki/src/Game.cpp
+1553524985 source:/home/sam/Desktop/C++ Advanced/Taki/src/Game.cpp
 	"../includes/Game.h"
 
-1552762473 source:/home/sam/Desktop/C++ Advanced/Taki/src/Player.cpp
+1553525020 source:/home/sam/Desktop/C++ Advanced/Taki/src/Player.cpp
 	"../includes/Player.h"
 
