@@ -13,14 +13,15 @@ Card Card::generate_card() {
 	++counter;
 	return Card(static_cast<color>(counter % 2 + 1), static_cast<sign>(counter % 5 + 8));
 #endif
-
 }
+
 bool Card::is_legal(const Card& other) const {
 	bool ret = false;
 	ret |= (get_color() == other.get_color());
 	ret |= (get_sign() == other.get_sign());
 	return ret;
 }
+
 ostream& operator << (ostream &os, const Card &c) {
 #ifdef WINDOWS
 	HANDLE hstdout = GetStdHandle(STD_OUTPUT_HANDLE);
