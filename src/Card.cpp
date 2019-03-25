@@ -1,4 +1,4 @@
-#include "../includes/Card.h"
+#include "Card.h"
 //#define RANDOM
 //#define WINDOWS
 //#ifdef WINDOWS

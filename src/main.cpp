@@ -1,6 +1,7 @@
 /* Samuel Bismuth 342533064 */
 
-#include "includes/Game.h"
+#include "Game.h"
+
 int main() {
 	srand(time(NULL));
 	Game game;

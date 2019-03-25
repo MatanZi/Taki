@@ -1,6 +1,6 @@
 /* Samuel Bismuth 342533064 */
 
-#include "../includes/Player.h"
+#include "Player.h"
 
 Player::Player(std::string name, int nbCards, std::vector<Card> cards):name(name), nbCards(nbCards), cards(cards) {}
 
@@ -65,4 +65,3 @@ std::vector<Card>& Player::getCards()
 {
     return this->cards;
 }
-

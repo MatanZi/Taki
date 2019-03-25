@@ -1,6 +1,6 @@
 /* Samuel Bismuth 342533064 */
 
-#include "../includes/Game.h"
+#include "Game.h"
 
 /**
 default constructor
