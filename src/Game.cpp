@@ -17,7 +17,10 @@ Game::Game()
  */
 Game::~Game()
 {
-        delete []players;
+        for(int i = 0; i < this->players.size(); i++)
+        {
+                delete players[i];
+        }
 }
 
 /*
