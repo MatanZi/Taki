@@ -14,7 +14,7 @@ Card Card::generate_card() {
 	return Card(static_cast<color>(counter % 2 + 1), static_cast<sign>(counter % 5 + 8));
 #endif
 }
-
+ 
 bool Card::is_legal(const Card& other) const {
 	bool ret = false;
 	ret |= (get_color() == other.get_color());
