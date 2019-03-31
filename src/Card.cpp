@@ -23,7 +23,7 @@ bool Card::is_legal(const Card& other) const {
 }
 
 ostream& operator << (ostream &os, const Card &c) {
-#ifdef WINDOWS
+#ifdef WINDOWS 
 	HANDLE hstdout = GetStdHandle(STD_OUTPUT_HANDLE);
 
 	// Remember how things were when we started
